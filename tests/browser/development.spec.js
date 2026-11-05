@@ -13,6 +13,19 @@ test("development refreshes saved HTML, CSS, JavaScript and assets; plain previe
   await cp(new URL("../../public/", import.meta.url), publicRoot, {
     recursive: true,
   });
+  const indexFile = path.join(publicRoot, "index.html");
+  const indexHtml = await readFile(indexFile, "utf8");
+  await writeFile(
+    indexFile,
+    indexHtml.replace(
+      "</body>",
+      '<img id="reload-asset" src="assets/reload-test.svg" alt="" />\n</body>',
+    ),
+  );
+  await cp(
+    path.join(publicRoot, "assets", "white-shirt.svg"),
+    path.join(publicRoot, "assets", "reload-test.svg"),
+  );
   const development = createApp({ publicRoot, development: true });
   const preview = createApp({ publicRoot });
   development.listen(0, "127.0.0.1");
@@ -75,12 +88,13 @@ test("development refreshes saved HTML, CSS, JavaScript and assets; plain previe
       "saved-js",
     );
 
-    await save("assets/white-shirt.svg", (svg) =>
+    await save("assets/reload-test.svg", (svg) =>
       svg.replace("<svg ", '<svg width="123" height="123" '),
     );
-    await expect(
-      page.locator('img[src="assets/white-shirt.svg"]'),
-    ).toHaveJSProperty("naturalWidth", 123);
+    await expect(page.locator("#reload-asset")).toHaveJSProperty(
+      "naturalWidth",
+      123,
+    );
 
     await expect(plain).toHaveTitle(originalTitle);
     await expect(plain.locator('script[src="/__dev/reload.js"]')).toHaveCount(
