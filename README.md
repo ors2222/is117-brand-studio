@@ -2,7 +2,7 @@
 
 **The same white T-shirt can carry very different meanings.** Develop a brand for it with an AI collaborator, then make those decisions visible in a professional website and a live style guide.
 
-**Current project status:** The first `BRAND-001` version is in progress. The learner selected the Creator archetype and a postmodernist-leaning direction for the working name Blank Theory. The storefront, live style guide, paired hero previews, and a U.S. competitor/buying-path report are drafted. The proposed wordmark and palette still need learner review; the product gallery uses sample-art concept mockups, not verified product photography. No checkout or real purchase flow is included.
+**Current project status:** The first `BRAND-001` version is in progress in [PR #3](https://github.com/ors2222/is117-brand-studio/pull/3). The learner selected the Creator archetype and a postmodernist-leaning direction for the working name Blank Theory. The storefront, live style guide, paired hero previews, and a U.S. competitor/buying-path report are drafted. The proposed wordmark and palette still need learner review; the product gallery uses sample-art concept mockups, not verified product photography. No checkout or real purchase flow is included.
 
 **A short record, visible to you:** your AI coach updates [LEARNING.md](LEARNING.md) with brief task-related explanations, observations and help received. It is AI-drafted, not a full transcript, and may be public with your repository. Review it and correct or remove excerpts before they are committed or pushed. Your instructor uses it alongside the project with this [simple three-part rubric](docs/assessment.md); the AI does not assign your grade.
 
