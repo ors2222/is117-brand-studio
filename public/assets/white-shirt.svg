@@ -16,8 +16,7 @@
       <feDropShadow dx="0" dy="23" stdDeviation="20" flood-color="#333b2e" flood-opacity=".10"/>
     </filter>
   </defs>
-  <rect width="800" height="880" fill="#e8eae1"/>
-  <ellipse cx="400" cy="744" rx="203" ry="23" fill="#d5d9cd" opacity=".6"/>
+  <ellipse cx="400" cy="744" rx="203" ry="23" fill="#5b4b6a" opacity=".12"/>
   <g filter="url(#shadow)">
     <path d="M310 144 232 178 110 305 205 394 253 350 248 713Q397 746 552 713L547 350 595 394 690 305 568 178 490 144Q454 185 400 185T310 144Z" fill="url(#fabric)" stroke="#daddd6" stroke-width="2" stroke-linejoin="round"/>
     <path d="M310 144Q328 226 400 226T490 144L468 135Q444 162 400 162T332 135Z" fill="url(#neck)" stroke="#d4d8ce" stroke-width="2"/>

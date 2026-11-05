@@ -11,6 +11,7 @@ test("negative: choosing no size explains the problem and keeps the bag empty", 
   await expect(page.locator("#size-error")).toBeVisible();
   await expect(page.locator("#size-error")).not.toBeEmpty();
   await expect(page.locator("#bag-count")).toHaveText("0");
+  await expect(page.locator("#bag-toast")).toBeHidden();
 });
 
 test("positive: a shopper can choose sizes, add items, and empty the demo bag", async ({
@@ -23,17 +24,89 @@ test("positive: a shopper can choose sizes, add items, and empty the demo bag", 
     .click();
   await expect(page.locator("#bag-count")).toHaveText("1");
   await expect(page.locator("#bag-status")).toContainText("M");
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $28.00 USD",
+  );
+  await expect(page.locator("#bag-items")).toContainText(
+    "White T-shirt · Size M · Quantity 1 · $28.00 each",
+  );
+  await expect(page.locator("#bag-toast")).toBeVisible();
+  await expect(page.locator("#bag-toast-message")).toHaveText(
+    "Added a white T-shirt in size M to your demo bag.",
+  );
+  await expect(page.locator(".bag-toast-link")).toBeVisible();
+  await page.locator(".bag-toast-link").click();
+  await expect(page).toHaveURL(/#demo-bag$/);
+  await expect(page.locator("#bag-toast")).toBeHidden();
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $28.00 USD",
+  );
   await page.locator('input[name="size"][value="L"]').check();
   await page
     .getByRole("button", { name: "Add to demo bag", exact: true })
     .click();
   await expect(page.locator("#bag-count")).toHaveText("2");
+  await expect(page.locator("#bag-toast")).toBeVisible();
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $56.00 USD",
+  );
+  await expect(page.locator("#bag-items li")).toHaveText([
+    "White T-shirt · Size M · Quantity 1 · $28.00 each",
+    "White T-shirt · Size L · Quantity 1 · $28.00 each",
+  ]);
+  await page.locator('input[name="size"][value="M"]').check();
+  await page
+    .getByRole("button", { name: "Add to demo bag", exact: true })
+    .click();
+  await expect(page.locator("#bag-count")).toHaveText("3");
+  await expect(page.locator("#bag-items li")).toHaveText([
+    "White T-shirt · Size M · Quantity 2 · $28.00 each",
+    "White T-shirt · Size L · Quantity 1 · $28.00 each",
+  ]);
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $84.00 USD",
+  );
   await page
     .getByRole("button", { name: "Empty demo bag", exact: true })
     .click();
   await expect(page.locator("#bag-count")).toHaveText("0");
+  await expect(page.locator("#bag-toast")).toBeHidden();
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $0.00 USD",
+  );
   await page.reload();
   await expect(page.locator("#bag-count")).toHaveText("0");
+});
+
+test("the notification dismisses and the persistent demo-bag link still shows the total", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.locator('input[name="size"][value="S"]').check();
+  await page
+    .getByRole("button", { name: "Add to demo bag", exact: true })
+    .click();
+  await expect(page.locator("#bag-toast")).toBeVisible();
+  await expect(page.locator("#bag-toast")).toHaveCSS(
+    "background-color",
+    "rgb(0, 0, 0)",
+  );
+  await expect(page.locator("#bag-toast")).toHaveCSS(
+    "color",
+    "rgb(255, 255, 255)",
+  );
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $28.00 USD",
+  );
+  await page.waitForTimeout(3000);
+  await expect(page.locator("#bag-toast")).toBeVisible();
+  await expect(page.locator("#bag-toast")).toBeHidden({ timeout: 5000 });
+  await expect(page.locator(".bag-link")).toBeVisible();
+  await page.locator(".bag-link").click();
+  await expect(page).toHaveURL(/#demo-bag$/);
+  await expect(page.locator("#bag-total")).toHaveText(
+    "Fictional demo total: $28.00 USD",
+  );
 });
 
 test("keyboard: the skip link reaches main and the size controls work without a mouse", async ({
@@ -55,6 +128,63 @@ test("keyboard: the skip link reaches main and the size controls work without a 
   ).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("#bag-count")).toHaveText("1");
+});
+
+test("the selected brand direction is shared by the storefront and live guide", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("#product-title")).toHaveText(
+    "Turn your creativity into art and wear it as your statement.",
+  );
+  await expect(page.locator(".product-intro")).toHaveText(
+    "A simple white tee that leaves room for your point of view.",
+  );
+  await expect(page.locator(".visual-panels .panel")).toHaveCount(3);
+  await expect(page.locator(".wordmark")).toHaveAttribute(
+    "alt",
+    "Proposed Blank Theory wordmark",
+  );
+  await expect(page.locator(".shirt-image")).toHaveJSProperty("complete", true);
+  expect(
+    await page.locator(".shirt-image").evaluate((image) => image.naturalWidth),
+  ).toBeGreaterThan(0);
+  await expect(page.locator(".shirt-image")).toHaveAttribute(
+    "src",
+    "assets/white-tee-front-mockup.webp",
+  );
+  await expect(page.locator(".gallery-view-button")).toHaveCount(2);
+  await page.getByRole("button", { name: "Back view" }).click();
+  await expect(page.locator(".shirt-image")).toHaveAttribute(
+    "src",
+    "assets/white-tee-back-mockup.webp",
+  );
+  await expect(page.getByRole("button", { name: "Back view" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(page.locator(".shirt-image")).toHaveAttribute(
+    "alt",
+    "Back view of a white T-shirt mockup with sample artwork",
+  );
+  await page.getByRole("button", { name: "Front view" }).click();
+  await expect(page.locator(".shirt-image")).toHaveAttribute(
+    "src",
+    "assets/white-tee-front-mockup.webp",
+  );
+  await expect(page.locator(".image-caption")).toContainText(
+    "intended to be sold blank",
+  );
+
+  await page.goto("/styleguide.html");
+  await expect(page.locator("#guide-title")).toContainText("Blank Theory");
+  await expect(page.getByText("Postmodernist-leaning")).toBeVisible();
+  await expect(
+    page.locator('[data-color-token="--color-panel-coral"]'),
+  ).not.toBeEmpty();
+  await expect(page.locator(".starter-notice")).toContainText(
+    "wordmark is a proposal awaiting review",
+  );
 });
 
 for (const route of ["/", "/styleguide.html", "/studio.html"]) {

@@ -1,0 +1,471 @@
+.exploration-page {
+  min-width: 20rem;
+  min-height: 100vh;
+  margin: 0;
+  color: #17201d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.exploration-page * {
+  box-sizing: border-box;
+}
+
+.exploration-page a {
+  color: inherit;
+  text-underline-offset: 0.22em;
+}
+
+.comparison-page {
+  background: #f3f2eb;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+.comparison-header,
+.comparison-footer {
+  max-width: 86rem;
+  margin-inline: auto;
+}
+
+.comparison-header {
+  padding-block: 0 1.5rem;
+}
+
+.comparison-kicker,
+.comparison-note,
+.preview-label a,
+.hero-wordmark,
+.hero-back,
+.hero-index,
+.hero-eyebrow,
+.hero-action,
+.hero-disclaimer,
+.hero-footer {
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+}
+
+.comparison-kicker {
+  margin: 0 0 0.8rem;
+  color: #5a625d;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.comparison-header h1 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.comparison-intro {
+  max-width: 65ch;
+  margin: 1rem 0 0;
+}
+
+.comparison-note {
+  margin: 0.75rem 0 0;
+  color: #5a625d;
+  font-size: 0.67rem;
+  line-height: 1.5;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 86rem;
+  margin-inline: auto;
+}
+
+.preview-card {
+  min-width: 0;
+  border: 1px solid #c8cbc2;
+  background: #fff;
+}
+
+.preview-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #c8cbc2;
+}
+
+.preview-label h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.preview-label a {
+  flex: 0 0 auto;
+  font-size: 0.62rem;
+}
+
+.exploration-page a:focus-visible {
+  outline: 3px solid currentcolor;
+  outline-offset: 4px;
+}
+
+.preview-card iframe {
+  display: block;
+  width: 100%;
+  height: 74rem;
+  border: 0;
+}
+
+.annotation {
+  padding: 1.2rem;
+  border-top: 1px solid #c8cbc2;
+}
+
+.annotation h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+}
+
+.annotation p,
+.annotation li {
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.annotation p + p {
+  margin-top: 0.75rem;
+}
+
+.annotation ul {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1.2rem;
+}
+
+.comparison-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  color: #4b534e;
+  font-size: 0.75rem;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: clamp(1rem, 3.3vw, 3rem);
+}
+
+.hero-header,
+.hero-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hero-header {
+  min-height: 3.5rem;
+}
+
+.hero-wordmark,
+.hero-back {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hero-wordmark {
+  text-decoration: none;
+}
+
+.hero-wordmark span {
+  font-weight: 400;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  width: min(100%, 83rem);
+  min-height: calc(100vh - 7rem);
+  margin-inline: auto;
+}
+
+.hero-product {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+}
+
+.hero-product img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-index,
+.hero-product figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.8rem 0;
+  font-size: 0.65rem;
+}
+
+.hero-copy {
+  max-width: 38rem;
+}
+
+.hero-eyebrow {
+  margin: 0 0 1.2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5.25vw, 5.8rem);
+  font-weight: 700;
+  letter-spacing: -0.075em;
+  line-height: 0.94;
+}
+
+.hero-support {
+  max-width: 36ch;
+  margin: 1.3rem 0 0;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.hero-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-width: 13rem;
+  margin-top: 1.7rem;
+  padding: 0.95rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hero-disclaimer {
+  max-width: 40ch;
+  margin: 1.2rem 0 0;
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.hero-footer {
+  min-height: 3.5rem;
+  border-top: 1px solid currentcolor;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-modernist {
+  background: #f5f3eb;
+  color: #151917;
+}
+
+.hero-modernist .hero-layout {
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+}
+
+.hero-modernist .hero-product {
+  padding: 0 1.1rem;
+  border-top: 2px solid #151917;
+  border-bottom: 1px solid #151917;
+}
+
+.hero-modernist .hero-product img {
+  max-height: 68vh;
+  object-fit: contain;
+}
+
+.hero-modernist .hero-copy h1 {
+  max-width: 10ch;
+}
+
+.hero-modernist .hero-eyebrow {
+  color: #3155d8;
+}
+
+.hero-modernist .hero-action {
+  background: #3155d8;
+  color: #fff;
+}
+
+.hero-postmodernist {
+  overflow: hidden;
+  background-color: #f4e7d8;
+  background-image:
+    radial-gradient(circle at 5% 10%, #e55375 0 0.45rem, transparent 0.5rem),
+    radial-gradient(circle at 92% 18%, #55c5bb 0 0.6rem, transparent 0.65rem),
+    linear-gradient(
+      135deg,
+      transparent 0 84%,
+      rgb(33 59 100 / 8%) 84% 85%,
+      transparent 85%
+    );
+  color: #1d2b45;
+}
+
+.hero-postmodernist .hero-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+}
+
+.hero-postmodernist .hero-product {
+  padding: 1rem;
+  border: 2px solid #1d2b45;
+  background: #66cec2;
+  box-shadow: 0.7rem 0.7rem 0 #e55375;
+  transform: rotate(-1deg);
+}
+
+.hero-postmodernist .hero-product img {
+  background: #f4e7d8;
+}
+
+.hero-postmodernist .hero-index,
+.hero-postmodernist .hero-product figcaption {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-postmodernist .hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-postmodernist .hero-eyebrow {
+  display: inline-block;
+  padding: 0.35rem 0.55rem;
+  background: #e7f06c;
+  transform: rotate(-2deg);
+}
+
+.hero-postmodernist .hero-copy h1 {
+  max-width: 11ch;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.hero-postmodernist .hero-copy h1 em {
+  color: #c33257;
+  font-weight: 400;
+}
+
+.hero-postmodernist .hero-action {
+  border: 2px solid #1d2b45;
+  background: #e7f06c;
+  box-shadow: 0.3rem 0.3rem 0 #1d2b45;
+}
+
+.hero-postmodernist .hero-action:active {
+  box-shadow: none;
+  transform: translate(0.3rem, 0.3rem);
+}
+
+.hero-postmodernist .hero-footer {
+  border-top-style: dashed;
+}
+
+.product-sticker {
+  position: absolute;
+  top: 16%;
+  right: -0.6rem;
+  display: grid;
+  width: 4.5rem;
+  aspect-ratio: 1;
+  place-content: center;
+  border: 2px solid #1d2b45;
+  border-radius: 50%;
+  background: #e7f06c;
+  font-family: "Courier New", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  transform: rotate(9deg);
+}
+
+@media (width <= 760px) {
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-card iframe {
+    height: 78rem;
+  }
+
+  .comparison-footer {
+    flex-direction: column;
+  }
+
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero-header {
+    align-items: flex-start;
+  }
+
+  .hero-layout,
+  .hero-modernist .hero-layout,
+  .hero-postmodernist .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    min-height: auto;
+    padding-block: 1rem 2rem;
+  }
+
+  .hero-product {
+    max-width: 37rem;
+    margin-inline: auto;
+  }
+
+  .hero-modernist .hero-product img {
+    max-height: none;
+  }
+
+  .hero-copy {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .hero-copy h1 {
+    max-width: 13ch;
+    font-size: clamp(2.4rem, 12vw, 4.2rem);
+  }
+}
+
+@media (width <= 440px) {
+  .preview-label {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .hero-modernist .hero-action:focus-visible {
+    outline-color: #151917;
+  }
+
+  .hero-wordmark,
+  .hero-back {
+    font-size: 0.6rem;
+  }
+
+  .hero-index,
+  .hero-product figcaption,
+  .hero-footer {
+    font-size: 0.55rem;
+  }
+}

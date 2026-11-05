@@ -1,18 +1,22 @@
-/* Shared brand tokens. Change these after you agree on your brand direction.
-   Both the storefront and the live style guide use this file. */
+/* Provisional tokens for the selected direction; the storefront and guide share them. */
 :root {
-  --color-paper: #f6f5f0;
-  --color-ink: #171a18;
-  --color-muted: #5a615b;
-  --color-line: #d1d5cc;
-  --color-accent: #e3ef56;
-  --color-soft: #e8eae1;
+  --color-paper: #f7f4ef;
+  --color-ink: #201b36;
+  --color-muted: #5f5a69;
+  --color-line: #d8d1dc;
+  --color-accent: #f3cb62;
+  --color-soft: #eee8f3;
   --color-white: #fff;
   --color-danger: #992e28;
+  --color-accent-deep: #8e3f53;
+  --color-panel-coral: #ef715c;
+  --color-panel-yellow: #f3cb62;
+  --color-panel-blue: #9abec5;
   --font-body:
     system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
   --font-display:
     system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+  --font-accent: georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, sfmono-regular, consolas, monospace;
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -160,7 +164,7 @@ p + p {
   width: 7px;
   height: 7px;
   display: inline-block;
-  background: var(--color-ink);
+  background: var(--color-panel-coral);
   border-radius: 50%;
 }
 
@@ -241,6 +245,9 @@ p + p {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  min-height: 2.5rem;
+  border: 1px solid var(--color-ink);
+  padding: 0.35rem 0.6rem 0.35rem 0.75rem;
   white-space: nowrap;
 }
 
@@ -264,12 +271,49 @@ p + p {
 
 .product-visual {
   position: relative;
+  isolation: isolate;
   background: var(--color-soft);
+}
+
+.visual-panels {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.visual-panels .panel {
+  position: absolute;
+  display: block;
+}
+
+.panel-coral {
+  inset: 48% auto 16% 7%;
+  width: 30%;
+  background: var(--color-panel-coral);
+  transform: rotate(-7deg);
+}
+
+.panel-yellow {
+  inset: 16% 8% auto auto;
+  width: 34%;
+  height: 25%;
+  background: var(--color-panel-yellow);
+  transform: rotate(6deg);
+}
+
+.panel-blue {
+  inset: auto 12% 21% auto;
+  width: 16%;
+  height: 19%;
+  background: var(--color-panel-blue);
+  transform: rotate(8deg);
 }
 
 .visual-label {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   inset: 1.3rem 1.4rem auto;
   display: flex;
   justify-content: space-between;
@@ -278,10 +322,12 @@ p + p {
 }
 
 .shirt-image {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: auto;
-  aspect-ratio: 800 / 880;
+  aspect-ratio: 21 / 16;
   object-fit: contain;
+  background: #000;
 }
 
 .image-caption {
@@ -292,6 +338,26 @@ p + p {
   padding: 1.2rem 1.4rem;
   border-top: 1px solid var(--color-line);
   font-size: 0.59rem;
+}
+
+.gallery-controls {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  background: var(--color-paper);
+}
+
+.gallery-view-button {
+  border: 1px solid var(--color-ink);
+  background: transparent;
+  color: var(--color-ink);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.75rem;
+}
+
+.gallery-view-button[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 .image-caption > :last-child {
@@ -306,7 +372,10 @@ p + p {
 }
 
 .product-information h1 {
+  max-width: 13ch;
   margin-top: 1.6rem;
+  font-size: clamp(2.8rem, 4.5vw, 4.9rem);
+  line-height: 1.02;
 }
 
 .product-intro {
@@ -320,6 +389,23 @@ p + p {
   margin-top: 0.6rem;
   font-size: 0.88rem;
   max-width: 430px;
+}
+
+.brand-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.35rem;
+  padding: 0.25rem 0 0.35rem;
+  border-bottom: 2px solid var(--color-ink);
+  font-size: 0.82rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.brand-action:hover {
+  border-color: var(--color-accent-deep);
+  color: var(--color-accent-deep);
 }
 
 .price-row {
@@ -527,6 +613,41 @@ legend {
 
 .bag-message {
   max-width: 500px;
+}
+
+.bag-toast {
+  position: fixed;
+  inset-inline-end: 1rem;
+  inset-block-end: 1rem;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 1rem;
+  width: min(34rem, calc(100vw - 2rem));
+  border: 1px solid #fff;
+  background: #000;
+  box-shadow: 0 0.5rem 1.5rem rgb(32 27 54 / 22%);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.bag-total {
+  font-weight: 700;
+}
+
+.bag-toast-link {
+  color: inherit;
+  white-space: nowrap;
+}
+
+.bag-toast-dismiss {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .bag-items {
@@ -785,7 +906,7 @@ legend {
 
 .palette-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.65rem;
 }
 
@@ -841,6 +962,24 @@ legend {
   letter-spacing: -0.075em;
   line-height: 1;
   max-width: 700px;
+}
+
+.type-display em,
+.type-accent {
+  color: var(--color-accent-deep);
+  font-family: var(--font-accent);
+  font-weight: 400;
+}
+
+.type-accent {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  letter-spacing: -0.05em;
+}
+
+.product-information h1 em {
+  color: var(--color-accent-deep);
+  font-family: var(--font-accent);
+  font-weight: 400;
 }
 
 .type-body {
@@ -968,7 +1107,7 @@ legend {
   }
 
   .product-information h1 {
-    font-size: clamp(3.4rem, 7vw, 5rem);
+    font-size: clamp(2.8rem, 5.8vw, 4.5rem);
   }
 
   .product-information {
@@ -1074,7 +1213,7 @@ legend {
   }
 
   .product-information h1 {
-    font-size: clamp(4.2rem, 13vw, 7rem);
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
     margin-top: 1rem;
   }
 

@@ -5,35 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="An unfinished, neutral T-shirt storefront for the IS117 Brand Studio. Build a brand through deliberate, visible design choices."
+      content="Blank Theory is a working-name brand concept for a white T-shirt and creative self-expression."
     />
-    <title>Your Brand — neutral storefront starter</title>
+    <title>Blank Theory — a white tee with room for your point of view</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="styles.css" />
     <script src="shop.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <aside class="starter-notice" aria-label="Starter information">
+    <aside class="starter-notice" aria-label="Brand status">
       <span
-        ><strong>Unfinished by design.</strong> This is a neutral teaching
-        starter. Replace its identity after your brand decisions.</span
+        ><strong>Working identity / Blank Theory.</strong> The visual direction
+        is in progress; the wordmark is a proposal and the product views are
+        sample-art concept mockups.</span
       >
-      <a href="studio.html"
-        >Enter the studio <span aria-hidden="true">↗</span></a
+      <a href="styleguide.html"
+        >View the live guide <span aria-hidden="true">↗</span></a
       >
     </aside>
     <header class="site-header wrap">
       <a
         class="brand-link"
         href="index.html"
-        aria-label="Your Brand storefront home"
+        aria-label="Blank Theory, working name, storefront home"
         ><img
           class="wordmark"
           src="assets/wordmark.svg"
-          alt="Neutral starter wordmark"
+          alt="Proposed Blank Theory wordmark"
           width="175"
-          height="26"
+          height="36"
       /></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a class="nav-link" href="index.html" aria-current="page">Shop</a>
@@ -42,7 +43,7 @@
           >Studio <span aria-hidden="true">↗</span></a
         >
       </nav>
-      <a class="bag-link" href="#demo-bag" aria-label="View demo bag"
+      <a class="bag-link" href="#demo-bag" aria-label="View demo bag and total"
         >Demo bag <span id="bag-count" class="bag-count">0</span></a
       >
     </header>
@@ -50,36 +51,75 @@
     <main id="main">
       <section class="product-section wrap" aria-labelledby="product-title">
         <div class="product-visual">
+          <div class="visual-panels" aria-hidden="true">
+            <span class="panel panel-coral"></span>
+            <span class="panel panel-yellow"></span>
+            <span class="panel panel-blue"></span>
+          </div>
           <div class="visual-label">
-            <span>001 / The starting point</span><span>Unbranded</span>
+            <span id="view-label">01 / Front</span>
+            <span>White tee / sample-art mockup</span>
           </div>
           <img
-            class="shirt-image"
-            src="assets/white-shirt.svg"
-            alt="Plain white, unbranded short-sleeved T-shirt"
-            width="800"
-            height="880"
+            id="shirt-gallery-image"
+            class="shirt-image shirt-gallery-image"
+            src="assets/white-tee-front-mockup.webp"
+            alt="Front view of a white T-shirt mockup with sample artwork"
+            width="1050"
+            height="800"
             fetchpriority="high"
           />
           <div class="image-caption">
-            <span>One product. Room for your point of view.</span
+            <span
+              >Sample-art concept mockup only. The T-shirt is intended to be
+              sold blank.</span
             ><span aria-hidden="true">↙</span>
+          </div>
+          <div
+            class="gallery-controls"
+            role="group"
+            aria-label="T-shirt mockup views"
+          >
+            <button
+              class="gallery-view-button"
+              type="button"
+              data-view="front"
+              aria-pressed="true"
+            >
+              Front view
+            </button>
+            <button
+              class="gallery-view-button"
+              type="button"
+              data-view="back"
+              aria-pressed="false"
+            >
+              Back view
+            </button>
           </div>
         </div>
         <div class="product-information">
           <p class="eyebrow">
-            <span class="status-dot" aria-hidden="true"></span> Neutral product
-            / demo only
+            <span class="status-dot" aria-hidden="true"></span> Blank Theory /
+            working name
           </p>
-          <h1 id="product-title">The white<br />T-shirt.</h1>
-          <p class="product-intro">A plain shirt. A place to begin.</p>
+          <h1 id="product-title">
+            Turn your creativity into art and wear it as your
+            <em>statement.</em>
+          </h1>
+          <p class="product-intro">
+            A simple white tee that leaves room for your point of view.
+          </p>
           <p class="muted product-description">
-            This starter has a working product page and room for a brand. Its
-            audience, personality, message, and visual direction are still yours
-            to decide.
+            An individual point of view, in progress. The views show sample
+            artwork on concept mockups; they do not verify the exact blank, fit,
+            materials, or care.
           </p>
+          <a class="brand-action" href="#product-form"
+            >Choose your size <span aria-hidden="true">↘</span></a
+          >
           <div class="price-row">
-            <p class="price">$28 <span>USD</span></p>
+            <p class="price" data-price-cents="2800">$28 <span>USD</span></p>
             <span class="micro-label">Fictional demo price</span>
           </div>
           <form id="product-form" class="product-form" novalidate>
@@ -118,6 +158,24 @@
               Add to demo bag <span aria-hidden="true">↗</span>
             </button>
           </form>
+          <div
+            id="bag-toast"
+            class="bag-toast"
+            role="group"
+            aria-label="Item added to demo bag"
+            hidden
+          >
+            <span id="bag-toast-message"></span>
+            <a class="bag-toast-link" href="#demo-bag">View demo bag</a>
+            <button
+              id="bag-toast-dismiss"
+              class="bag-toast-dismiss"
+              type="button"
+              aria-label="Dismiss notification"
+            >
+              ×
+            </button>
+          </div>
           <p class="demo-disclaimer">
             A classroom interaction, using fictional product data. No order,
             payment, or personal information is collected.
@@ -129,7 +187,7 @@
             </div>
             <div>
               <dt>Brand identity</dt>
-              <dd>Not decided yet</dd>
+              <dd>Blank Theory / working name</dd>
             </div>
             <div>
               <dt>Product claims</dt>
@@ -159,11 +217,15 @@
             Your demo bag is empty. Choose a size to try it.
           </p>
           <ul id="bag-items" class="bag-items"></ul>
+          <p id="bag-total" class="bag-total">
+            Fictional demo total: $0.00 USD
+          </p>
           <button id="clear-bag" class="text-button" type="button" disabled>
             Empty demo bag
           </button>
           <p class="field-help">
-            The bag resets when this page reloads. There is no checkout.
+            Fictional demo price only. The bag resets when this page reloads;
+            there is no checkout.
           </p>
         </div>
       </section>
@@ -186,11 +248,10 @@
 
     <footer class="site-footer wrap">
       <p>
-        IS117 Brand Studio <span class="footer-separator"> / </span> Neutral
-        starter
+        Blank Theory <span class="footer-separator"> / </span> Working direction
       </p>
       <p class="footer-tagline">Fictional product. Real design decisions.</p>
-      <a href="https://github.com/kaw393939/is117-brand-studio#readme"
+      <a href="https://github.com/ors2222/is117-brand-studio#readme"
         >Project README <span aria-hidden="true">↗</span></a
       >
     </footer>
